@@ -39,7 +39,7 @@ class SumCalculation extends RecursiveTask<Integer> {
 
     @Override
     protected Integer compute() {
-        if(this.numberList.size() <= 250) {
+        if(this.numberList.size() <= 1000) {
             return this.numberList.stream().mapToInt(Integer::intValue).sum();
         }
 
@@ -65,7 +65,7 @@ class AverageCalculator implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        return sum / (numList.size() - 1);
+        return sum / numList.size();
     }
 }
 
@@ -78,7 +78,7 @@ class FindMinMax extends RecursiveTask<List<Integer>> {
 
     @Override
     protected List<Integer> compute() {
-        if(this.numberList.size() <= 250) {
+        if(this.numberList.size() <= 1000) {
             return this.numberList.stream()
                     .collect(Collectors.teeing(
                             Collectors.minBy(Integer::compareTo),
